@@ -49,8 +49,13 @@ class Room:
     def room_message(self):
         print(f"You have entered the room with {self.__room_content} and {self.__potion}")
 
+    @property
     def is_visited(self):
-        return self.__visited is True
+        return self.__visited
+
+    @is_visited.setter
+    def is_visited(self, is_visited: bool):
+        self.__visited = is_visited
 
     def add_potion(self):
         add_potion = random.randint(5, 15)
