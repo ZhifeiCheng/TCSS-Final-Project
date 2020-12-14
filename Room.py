@@ -1,9 +1,6 @@
-import random
-
-
 class Room:
     def __init__(self, room_content=None):
-        self.__potion = 0
+        self.__point = 0
         self.__vision_potion = None
         self.__visited = False
         self.__room_content = room_content  # vision potion, health potion, pit, M
@@ -46,9 +43,6 @@ class Room:
             res += " ".join(row) + "\n"
         return res
 
-    def room_message(self):
-        print(f"You have entered the room with {self.__room_content} and {self.__potion}")
-
     @property
     def is_visited(self):
         return self.__visited
@@ -57,21 +51,21 @@ class Room:
     def is_visited(self, is_visited: bool):
         self.__visited = is_visited
 
-    def add_potion(self):
-        add_potion = random.randint(5, 15)
-        self.__potion = self.__potion + add_potion
-        print(f"The room has lost {add_potion} potion")
+    @property
+    def room_point(self):
+        """
+        getter method that allows other classes retrieve the rooms points
+        """
+        return self.__point
 
-    def add_pit(self):
-        lose_potion = random.randint(1, 20)
-        self.__potion = self.__potion - lose_potion
-        print(f"The room has lost {lose_potion} potion")
+    @room_point.setter
+    def room_point(self, point):
+        """
+        setter method that allows other classes change the rooms points with "health
+        potion or pits
+        """
+        self.__point = point
 
-    def potion_change(self):
-        pass
-
-    def vision_potion(self):
-        pass
 
 if __name__ == "__main__":
     room = Room("E")

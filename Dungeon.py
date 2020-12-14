@@ -8,7 +8,7 @@ class Dungeon:
         self.__column_count = column_count
         self.__row_count = row_count
         self.__room_list = []
-        self.__room_content = {"M": 0.1, "X": 0.1, "V": 0.1, "H": 0.1}  # dict of each room content & ratio
+        self.__room_content = {"M": 0.1, "X": 0.1, "V": 0.2, "H": 0.2}  # dict of each room content & ratio
         self.__pillar = ["A", "E", "I", "P"]
         self.__room_content_count = None  # number count of each room content
         self.__vision_rooms = []
@@ -18,6 +18,10 @@ class Dungeon:
     @property
     def room_content(self):
         return self.__room_content.keys()
+
+    @property
+    def room_list(self):
+        return self.__room_list
 
     def entrance_generator(self):
         """
@@ -35,12 +39,15 @@ class Dungeon:
         Generate the dungeon by setting up the entrance point, create_room from RoomFactory class and lists of lists.
         """
         self.cal_room_content()
+        # populate empty dungeon without room_content
         for r in range(0, self.__row_count):
             room_row = []
             for c in range(0, self.__column_count):
                 room_row.append(RoomFactory.create_room(r, c, self.__row_count - 1, self.__column_count - 1))
             self.__room_list.append(room_row)
+        # call set_traverse_path function to set door alignments between rooms
         self.set_traverse_path()
+        # assign room_content for empty rooms that are not entrance or exit
         for row in range(0, self.__row_count):
             for column in range(0, self.__column_count):
                 room = self.__room_list[row][column]
@@ -55,7 +62,7 @@ class Dungeon:
         """
         Find a traversable path from the entrance room by randomly picking the moving direction until
         reach the perimeter of the dungeon, which will be the exit room. The method guarantees each generated dungeon is
-        valid and has at least one traversable path.
+        valid and has at least one traversable path. Four pillars are assigned along the path as room_content.
         """
         entrance_point = self.entrance_generator()
         RoomFactory.update_room_as_exit(self.__room_list[entrance_point[0]][entrance_point[1]], entrance_point[0],
@@ -122,6 +129,9 @@ class Dungeon:
         """
         self.__room_content_count = [math.floor(x * self.__empty_rooms) for x in self.__room_content.values()]
         self.__empty_rooms = self.__empty_rooms - sum(self.__room_content_count)
+
+    def entrance_exit_pos(self):
+        return self.__entrance_exit_pos
 
     def set_room_vision_potion(self):
         """

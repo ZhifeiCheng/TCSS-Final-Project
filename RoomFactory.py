@@ -3,9 +3,17 @@ from Room import Room
 
 
 class RoomFactory:
+    """
+    The RoomFactory class contains three different methods to create/update rooms for typical inner and edge condition,
+    rooms along the traversable path and entrance/exit.
+    """
     @staticmethod
     def create_room(row_count: int, col_count: int, max_row_count: int, max_col_count: int,
                     room_content=" "):
+        """
+        Create typical rooms and randomly assign doors if the room is not on perimeter. If the room is located along the
+        perimeter, use wall instead of door.
+        """
         room = Room()
         room_matrix = room.room_matrix  # default room matrix is filled with "*" as walls
         room_matrix[1][1] = room_content
