@@ -99,10 +99,6 @@ class DungeonAdventurer:
             print("You are moving out of the dungeon boundary.")
         return False
 
-    @staticmethod
-    def traverse():
-        pass
-
 
 if __name__ == "__main__":
     DungeonAdventurer.game_starter()
