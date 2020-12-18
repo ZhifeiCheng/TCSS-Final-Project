@@ -5,7 +5,7 @@ class Adventurer:
     """
     The Adventurer is a player of the Dungeon Adventure game.
     An Adventurer has a given name, amount of points, counts of potions collected, and list of pillars collected.
-    """"
+    """
     
     def __init__(self, name):
         """
@@ -25,8 +25,8 @@ class Adventurer:
         return self.__hit_points
 
     @hit_points.setter
-        """Allows other classes to modify the value of self.__hit_points as the game is played."""
     def hit_points(self, point_change: int):
+        """Allows other classes to modify the value of self.__hit_points as the game is played."""
         self.__hit_points = point_change
 
     @property

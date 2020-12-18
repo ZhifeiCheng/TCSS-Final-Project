@@ -5,7 +5,7 @@ from RoomFactory import RoomFactory
 
 class Dungeon:
     """
-    This class randomly generates a maze of rooms given the desired dimensions 
+    This class randomly generates a maze of rooms given the desired dimensions
     which players can pass through to play the Dungeon Adventure game.
     """
     def __init__(self, column_count, row_count):
@@ -122,7 +122,7 @@ class Dungeon:
 
     def room_content_generator(self):
         """
-        Generates a sequence of random numbers based on the room has content
+        generate a sequence of random numbers based on the room has content
         """
         num = random.randint(0, sum(self.__room_content_count) + self.__empty_rooms)
         for idx in range(len(self.__room_content)):  # iterate through each room content type

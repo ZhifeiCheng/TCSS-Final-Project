@@ -35,7 +35,7 @@ import tkinter as tk
 import random
 from Adventurer import Adventurer
 from Dungeon import Dungeon
-from DungeonAdventure import DungeonAdventurer
+from DungeonAdventure import DungeonAdventure
 
 
 class DungeonGui(object):
@@ -191,8 +191,8 @@ class DungeonGui(object):
             next_j=adventurer_j_index
             DungeonGui.score_card(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols)
 
-        if DungeonAdventurer.if_passable(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols):
-            x = -100  # Keep this same as 'self.col_width'
+        if DungeonAdventure.if_passable(dng,curr_i,curr_j,next_i,next_j,nrows, ncols):
+            x = -100 # Keep this same as 'self.col_width'
             y = 0
             my_canvas.move(my_image, x, y)
         else:
@@ -235,7 +235,7 @@ class DungeonGui(object):
             next_j = adventurer_j_index
             DungeonGui.score_card(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols)
 
-        if DungeonAdventurer.if_passable(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols):
+        if DungeonAdventure.if_passable(dng, curr_i, curr_j, next_i, next_j, nrows, ncols):
             x = 100
             y = 0
             my_canvas.move(my_image, x, y)
@@ -246,11 +246,11 @@ class DungeonGui(object):
             adventurer_j_index = adventurer_j_index - 1
 
         if (next_i, next_j) == (exit_i_index, exit_j_index):
-            label_congrats = tk.Label(my_window, text="Congratulations!",fg='green')
+            label_congrats = tk.Label(my_window, text="Congratulations!", fg='green')
             label_congrats.config(font=('Arial', 15))
             my_canvas.create_window(950, 350, window=label_congrats)
 
-            label_dest = tk.Label(my_window, text="Reached Destination!",fg='green')
+            label_dest = tk.Label(my_window, text="Reached Destination!", fg='green')
             label_dest.config(font=('Arial', 15))
             my_canvas.create_window(950, 375, window=label_dest)
 
@@ -280,7 +280,7 @@ class DungeonGui(object):
             next_i = adventurer_i_index
             DungeonGui.score_card(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols)
 
-        if DungeonAdventurer.if_passable(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols):
+        if DungeonAdventure.if_passable(dng, curr_i, curr_j, next_i, next_j, nrows, ncols):
             x = 0
             y = -100  # Keep this same as self.row_height
             my_canvas.move(my_image, x, y)
@@ -325,7 +325,7 @@ class DungeonGui(object):
             next_i = adventurer_i_index
             DungeonGui.score_card(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols)
 
-        if DungeonAdventurer.if_passable(dng, curr_i, curr_j, next_i, next_j, n_rows, n_cols):
+        if DungeonAdventure.if_passable(dng,curr_i,curr_j,next_i,next_j,nrows, ncols):
             x = 0
             y = 100
             my_canvas.move(my_image, x, y)
@@ -360,7 +360,7 @@ class DungeonGui(object):
         global adventurer, hit_point, pillar_collected, healing_potion_count, vision_potion_count, healing_potion,\
             vision_potion
 
-        if DungeonAdventurer.if_passable(dungeon, curr_x, curr_y, next_x, next_y, column_count, row_count):
+        if DungeonAdventure.if_passable(dungeon, curr_x, curr_y, next_x, next_y, column_count, row_count):
             next_room = dungeon.room_list[next_x][next_y]
             curr_room = next_room
             if hit_point < 0:

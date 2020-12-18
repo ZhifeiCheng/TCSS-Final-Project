@@ -3,11 +3,10 @@ from Adventurer import Adventurer
 from Dungeon import Dungeon
 
 
-class DungeonAdventurer:
+class DungeonAdventure:
     """
     This class contains the main logic for the Dungeon Adventure game.
     """
-
     @staticmethod
     def game_starter():
         """
@@ -15,7 +14,7 @@ class DungeonAdventurer:
         Creates a dungeon of given dimensions. Allows the player to move and play the game.
         """
         print("Welcome to our Dungeon game!")
-        name = str(input("What's your name?"))
+        name = str(input("What's your name? "))
         column_count = int(input("Please input an integer as the number of columns dungeon "))
         row_count = int(input("Please input an integer as the number of rows of the dungeon "))
         dungeon = Dungeon(column_count, row_count)
@@ -42,7 +41,7 @@ class DungeonAdventurer:
             dire = dire_map[move]
             next_x = curr_x + dire[0]
             next_y = curr_y + dire[1]
-            if DungeonAdventurer.if_passable(dungeon, curr_x, curr_y, next_x, next_y, column_count, row_count):
+            if DungeonAdventure.if_passable(dungeon, curr_x, curr_y, next_x, next_y, column_count, row_count):
                 next_room = dungeon.room_list[next_x][next_y]
                 curr_room = next_room
                 if hit_point < 0:
@@ -108,4 +107,4 @@ class DungeonAdventurer:
 
 
 if __name__ == "__main__":
-    DungeonAdventurer.game_starter()
+    DungeonAdventure.game_starter()
