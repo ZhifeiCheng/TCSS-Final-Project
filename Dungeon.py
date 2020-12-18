@@ -4,7 +4,14 @@ from RoomFactory import RoomFactory
 
 
 class Dungeon:
+    """
+    This class randomly generates a maze of rooms given the desired dimensions 
+    which players can pass through to play the Dungeon Adventure game.
+    """
     def __init__(self, column_count, row_count):
+        """
+        Given dungeon dimensions, a dungeon can be constructed with rooms that can contain items for the game.
+        """
         self.__column_count = column_count
         self.__row_count = row_count
         self.__room_list = []
@@ -17,15 +24,17 @@ class Dungeon:
 
     @property
     def room_content(self):
+        """"Gives other classes access to the private field of self.__room_content.keys()."""
         return self.__room_content.keys()
 
     @property
     def room_list(self):
+        """"Gives other classes access to the private field of self.__room_list."""
         return self.__room_list
 
     def entrance_generator(self):
         """
-        Generate the 2d coordinate pair for the entrance by randomly pick one coordinate along the perimeter.
+        Generates the 2d coordinate pair for the entrance by randomly pick one coordinate along the perimeter.
 
         """
         entrance_x = random.choice([0, self.__row_count - 1])
@@ -36,7 +45,7 @@ class Dungeon:
 
     def dungeon_generator(self):
         """
-        Generate the dungeon by setting up the entrance point, create_room from RoomFactory class and lists of lists.
+        Generates the dungeon by setting up the entrance point, create_room from RoomFactory class and lists of lists.
         """
         self.cal_room_content()
         # populate empty dungeon without room_content
@@ -60,7 +69,7 @@ class Dungeon:
 
     def set_traverse_path(self):
         """
-        Find a traversable path from the entrance room by randomly picking the moving direction until
+        Finds a traversable path from the entrance room by randomly picking the moving direction until
         reach the perimeter of the dungeon, which will be the exit room. The method guarantees each generated dungeon is
         valid and has at least one traversable path. Four pillars are assigned along the path as room_content.
         """
@@ -112,7 +121,9 @@ class Dungeon:
                                             self.__column_count - 1)
 
     def room_content_generator(self):
-        # generate a sequence of random numbers based on the room has content
+        """
+        Generates a sequence of random numbers based on the room has content
+        """
         num = random.randint(0, sum(self.__room_content_count) + self.__empty_rooms)
         for idx in range(len(self.__room_content)):  # iterate through each room content type
             if num < self.__room_content_count[idx]:
@@ -125,12 +136,13 @@ class Dungeon:
 
     def cal_room_content(self):
         """
-        Calculate the count of each room content type by percentage
+        Calculates the count of each room content type by percentage
         """
         self.__room_content_count = [math.floor(x * self.__empty_rooms) for x in self.__room_content.values()]
         self.__empty_rooms = self.__empty_rooms - sum(self.__room_content_count)
 
     def entrance_exit_pos(self):
+        """"Gives other classes access to the private field of self.__entrance_exit_pos."""
         return self.__entrance_exit_pos
 
     def set_room_vision_potion(self):
@@ -158,6 +170,9 @@ class Dungeon:
         return rooms
 
     def __str__(self):
+        """
+        Returns a str visualization of the dungeon.
+        """
         res = ""
         for row in self.__room_list:
             for i in range(3):
