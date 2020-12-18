@@ -4,9 +4,16 @@ from Dungeon import Dungeon
 
 
 class DungeonAdventurer:
+    """
+    This class contains the main logic for the Dungeon Adventure game.
+    """
 
     @staticmethod
     def game_starter():
+        """
+        Introduces the player to the game. Creates an adventurer with the given name.
+        Creates a dungeon of given dimensions. Allows the player to move and play the game.
+        """
         print("Welcome to our Dungeon game!")
         name = str(input("What's your name?"))
         column_count = int(input("Please input an integer as the number of columns dungeon "))
@@ -74,7 +81,7 @@ class DungeonAdventurer:
     def if_passable(dungeon: Dungeon, curr_x: int, curr_y: int, next_x: int, next_y: int, column_count: int,
                     row_count: int):
         """
-        Test if next room is passable or not by looking up if the next room is out of dungeon boundary or the doors are
+        Tests if next room is passable or not by looking up if the next room is out of dungeon boundary or the doors are
         paired
         """
         diff_x = next_x - curr_x
