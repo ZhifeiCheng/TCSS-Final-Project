@@ -11,7 +11,7 @@ class RoomFactory:
     def create_room(row_count: int, col_count: int, max_row_count: int, max_col_count: int,
                     room_content=" "):
         """
-        Create typical rooms and randomly assign doors if the room is not on perimeter. If the room is located along the
+        Creates typical rooms and randomly assign doors if the room is not on perimeter. If the room is located along the
         perimeter, use wall instead of door.
         """
         room = Room()
@@ -25,6 +25,9 @@ class RoomFactory:
 
     @staticmethod
     def connect_room(room1: Room, room2: Room, room1_loc: list, room2_loc: list):
+        """
+        Connects two rooms together such that a player can travel between them.
+        """
         dir_x = room2_loc[0] - room1_loc[0]
         dir_y = room2_loc[1] - room1_loc[1]
         if dir_y == 1:
@@ -42,6 +45,9 @@ class RoomFactory:
 
     @staticmethod
     def update_room_as_exit(room: Room, row: int, col: int, max_row: int, max_col: int, room_content="O"):
+        """
+        Updates the designated room to be the exit of the dungeon.
+        """
         if row == 0:
             room.room_matrix[0][1] = "-"
         elif row == max_row:
